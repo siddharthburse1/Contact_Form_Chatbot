@@ -1,0 +1,42 @@
+version: "3.1"
+nlu:
+- intent: greet
+  examples: |
+    - hello
+    - hi
+    - hey there
+
+- intent: contact_form
+  examples: |
+    - I want to fill the form
+    - need to submit my contact
+    - share my details
+
+- intent: talk_to_agent #thank_you
+  examples: |
+    - talk to agent
+    - need human help
+    - connect me to a human
+    - connect me to human
+
+- intent: thank_you
+  examples: |
+    - thank you
+    - thanks
+    - appreciate your help
+    
+- intent: provide_info
+  examples: |
+    - My name is John
+    - Email is john@example.com
+    - My phone number is 1234567890
+    - sid@gmail.com
+    - Call me at 9876543210
+
+- intent: show_details
+  examples: |
+    - show my details
+    - show contact info
+    - what did I submit
+    - my information
+

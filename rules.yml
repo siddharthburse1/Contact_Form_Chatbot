@@ -1,0 +1,31 @@
+version: "3.1"
+rules:
+- rule: Activate contact form
+  steps:
+    - intent: contact_form
+    - action: contact_form
+    - active_loop: contact_form
+
+- rule: Submit contact form
+  condition:
+    - active_loop: contact_form
+  steps:
+    - action: contact_form
+    - active_loop: null
+    - action: utter_submit
+
+- rule: Show submitted details
+  steps:
+    - intent: show_details
+    - action: utter_show_details
+
+- rule: thank you response
+  steps:
+    - intent: thank_you
+    - action: utter_thank_you
+
+- rule: Talk to agent
+  steps:
+    - intent: talk_to_agent
+    - action: utter_talk_to_agent
+

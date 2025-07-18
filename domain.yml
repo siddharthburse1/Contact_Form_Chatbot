@@ -1,0 +1,84 @@
+version: "3.1"
+
+intents:
+  - greet
+  - contact_form
+  - thank_you
+  - provide_info
+  - show_details
+  - talk_to_agent
+
+entities:
+  - name
+  - email
+  - phone
+
+slots:
+  name:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: contact_form
+            requested_slot: name
+
+  email:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: contact_form
+            requested_slot: email
+
+  phone:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: from_text
+        conditions:
+          - active_loop: contact_form
+            requested_slot: phone
+
+
+responses:
+  utter_greet:
+    - text: "Hi there! How can I help you today?"
+      buttons:
+        - title: "Fill Contact Form"
+          payload: "/contact_form"
+        - title: "Talk to Agent"
+          payload: "/talk_to_agent" #"/thank_you"
+
+  utter_ask_name:
+    - text: "May I have your name?"
+  utter_ask_email:
+    - text: "Please provide your email address."
+  utter_ask_phone:
+    - text: "What's your contact number?"
+  utter_thank_you:
+    - text: "Thank you for reaching out! We appreciate your feedback."
+  utter_talk_to_agent:
+    - text: "Connecting you to a human agent. Please hold on..."  
+  utter_submit:
+    - text: "Thanks {name}, your details have been submitted."
+
+
+  utter_show_details:
+    - text: |
+        📝 Here's your submitted info:
+        👤 Name: {name}
+        📧 Email: {email}
+        📞 Phone: {phone}
+
+forms:
+  contact_form:
+    required_slots:
+      - name
+      - email
+      - phone
+
+actions:
+  - validate_contact_form
+  - utter_submit

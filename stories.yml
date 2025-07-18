@@ -1,0 +1,25 @@
+version: "3.1"
+stories:
+- story: contact form path
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: contact_form
+    - action: contact_form
+    - active_loop: contact_form
+    - active_loop: null
+    - action: utter_submit
+
+- story: thank you path
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: thank_you
+    - action: utter_thank_you
+
+- story: talk to agent path
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: talk_to_agent
+    - action: utter_talk_to_agent
